@@ -7,10 +7,13 @@ server.use(cors());
 
 const users = [];
 const tweets = [];
+let avatar = "";
+const sendTweets = [];
 
 
 server.post('/sign-up', (req, res) => {
     const user = req.body;
+    avatar = user.avatar;
     users.push(user);
 
     console.log(users);
@@ -18,9 +21,15 @@ server.post('/sign-up', (req, res) => {
 });
 
 
+
+server.get('/tweets', (req, res) => {
+    res.send(sendTweets.slice(0, 10));
+});
+
 server.post('/tweets', (req, res) => {
     const tweet = req.body;
-    tweets.push(tweet);
+    tweets.unshift(tweet);
+    sendTweets.unshift({ ... tweet , avatar: avatar})
 
     console.log(tweets);
     res.send('OK');
