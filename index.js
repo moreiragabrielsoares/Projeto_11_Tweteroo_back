@@ -16,7 +16,6 @@ server.post('/sign-up', (req, res) => {
     avatar = user.avatar;
     users.push(user);
 
-    console.log(users);
     res.send('OK');
 });
 
@@ -31,7 +30,6 @@ server.post('/tweets', (req, res) => {
     tweets.unshift(tweet);
     sendTweets.unshift({ ... tweet , avatar: avatar})
 
-    console.log(tweets);
     res.send('OK');
 });
 
